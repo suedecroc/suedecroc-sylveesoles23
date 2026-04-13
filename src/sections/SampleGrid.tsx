@@ -70,8 +70,10 @@ function SampleCard({ index, image }: { index: number; image?: string }) {
         </div>
       )}
 
-      {/* Frosted hover overlay */}
-      <div className="absolute inset-0 bg-white/0 backdrop-blur-0 transition-all duration-300 group-hover:bg-white/20 group-hover:backdrop-blur-sm" />
+      {/* Blur overlay — blurred by default, clears on hover */}
+      {image && (
+        <div className="absolute inset-0 backdrop-blur-md transition-all duration-500 group-hover:backdrop-blur-0" />
+      )}
     </motion.div>
   );
 }
