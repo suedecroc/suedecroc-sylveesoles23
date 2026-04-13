@@ -1,23 +1,24 @@
 "use client";
 import { useMousePosition } from "@/hooks";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
+
+const emptySubscribe = () => () => {};
+
+function getIsDesktop() {
+  return !("ontouchstart" in window) && navigator.maxTouchPoints === 0;
+}
 
 export default function CustomCursor() {
   const { x, y } = useMousePosition();
-  const [visible, setVisible] = useState(false);
+  const visible = useSyncExternalStore(emptySubscribe, getIsDesktop, () => false);
 
   useEffect(() => {
-    const isTouchDevice =
-      "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    if (!isTouchDevice) {
-      setVisible(true);
+    if (visible) {
       document.body.classList.add("custom-cursor-active");
+      return () => document.body.classList.remove("custom-cursor-active");
     }
-    return () => {
-      document.body.classList.remove("custom-cursor-active");
-    };
-  }, []);
+  }, [visible]);
 
   if (!visible) return null;
 

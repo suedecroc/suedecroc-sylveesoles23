@@ -36,7 +36,7 @@ function MagneticLink({
   textColor: string;
   index: number;
 }) {
-  const { ref, offset, handleMouseMove, handleMouseLeave } = useMagneticButton(0.3);
+  const { ref, x, y, handleMouseMove, handleMouseLeave } = useMagneticButton(0.3);
 
   return (
     <motion.a
@@ -48,8 +48,8 @@ function MagneticLink({
       style={{
         background: gradient,
         color: textColor,
-        x: offset.x,
-        y: offset.y,
+        x,
+        y,
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}

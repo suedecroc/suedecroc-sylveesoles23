@@ -5,8 +5,8 @@ import { useParallax, useTextScramble, useMagneticButton } from "@/hooks";
 export default function Hero() {
   const y = useParallax([0, 1], [0, -60]);
   const { display: tagline } = useTextScramble("pretty feet, prettier attitude");
-  const cta1 = useMagneticButton(0.25);
-  const cta2 = useMagneticButton(0.25);
+  const { ref: cta1Ref, x: cta1X, y: cta1Y, handleMouseMove: cta1Move, handleMouseLeave: cta1Leave } = useMagneticButton(0.25);
+  const { ref: cta2Ref, x: cta2X, y: cta2Y, handleMouseMove: cta2Move, handleMouseLeave: cta2Leave } = useMagneticButton(0.25);
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
@@ -56,31 +56,31 @@ export default function Hero() {
           transition={{ delay: 1.2 }}
         >
           <motion.a
-            ref={cta1.ref as React.Ref<HTMLAnchorElement>}
+            ref={cta1Ref as React.Ref<HTMLAnchorElement>}
             href="#links"
             className="rounded-full px-8 py-3 text-sm font-semibold text-white shadow-lg transition-shadow hover:shadow-xl"
             style={{
               background: "linear-gradient(135deg, #F2A7B0, #D4707A)",
-              x: cta1.offset.x,
-              y: cta1.offset.y,
+              x: cta1X,
+              y: cta1Y,
             }}
-            onMouseMove={cta1.handleMouseMove}
-            onMouseLeave={cta1.handleMouseLeave}
+            onMouseMove={cta1Move}
+            onMouseLeave={cta1Leave}
           >
             Find Me
           </motion.a>
           <motion.a
-            ref={cta2.ref as React.Ref<HTMLAnchorElement>}
+            ref={cta2Ref as React.Ref<HTMLAnchorElement>}
             href="#gallery"
             className="rounded-full border-2 px-8 py-3 text-sm font-semibold shadow-lg transition-shadow hover:shadow-xl"
             style={{
               borderColor: "#A8D8C8",
               color: "#A8D8C8",
-              x: cta2.offset.x,
-              y: cta2.offset.y,
+              x: cta2X,
+              y: cta2Y,
             }}
-            onMouseMove={cta2.handleMouseMove}
-            onMouseLeave={cta2.handleMouseLeave}
+            onMouseMove={cta2Move}
+            onMouseLeave={cta2Leave}
           >
             Preview
           </motion.a>

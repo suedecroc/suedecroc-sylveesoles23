@@ -1,23 +1,27 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const emptySubscribe = () => () => {};
+
+function getIsVerified() {
+  return localStorage.getItem("sylvee-age-verified") === "true";
+}
+
 export default function AgeGate({ onVerified }: { onVerified: () => void }) {
-  const [show, setShow] = useState(true);
+  const alreadyVerified = useSyncExternalStore(emptySubscribe, getIsVerified, () => false);
+  const [dismissed, setDismissed] = useState(false);
+  const show = !alreadyVerified && !dismissed;
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const verified = localStorage.getItem("sylvee-age-verified");
-      if (verified === "true") {
-        setShow(false);
-        onVerified();
-      }
+    if (alreadyVerified) {
+      onVerified();
     }
-  }, [onVerified]);
+  }, [alreadyVerified, onVerified]);
 
   const handleYes = () => {
     localStorage.setItem("sylvee-age-verified", "true");
-    setShow(false);
+    setDismissed(true);
     onVerified();
   };
 
