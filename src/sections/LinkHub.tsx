@@ -5,7 +5,7 @@ import { useMagneticButton } from "@/hooks";
 const links = [
   {
     label: "Instagram",
-    href: "https://instagram.com",
+    href: "https://www.instagram.com/sylveesoles23",
     gradient: "linear-gradient(135deg, #F2A7B0, #D4707A)",
     textColor: "#fff",
   },
@@ -17,7 +17,7 @@ const links = [
   },
   {
     label: "Reddit",
-    href: "https://reddit.com",
+    href: "https://www.reddit.com/user/SylveonSoles23/",
     gradient: "linear-gradient(135deg, #FDDDE6, #F2A7B0)",
     textColor: "#D4707A",
   },
