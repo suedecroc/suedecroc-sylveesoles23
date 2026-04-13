@@ -16,6 +16,11 @@ const samples: SampleItem[] = [
   { image: "/samples/4.jpg", className: "md:col-span-2 md:aspect-[3/2]" },
   { image: "/samples/5.jpg" },
   { image: "/samples/6.jpg" },
+  { image: "/samples/7.jpg", className: "md:row-span-2" },
+  { image: "/samples/8.jpg" },
+  { image: "/samples/9.jpg" },
+  { image: "/samples/10.jpg", className: "md:col-span-2 md:aspect-[3/2]" },
+  { image: "/samples/11.jpg" },
 ];
 
 function SampleCard({ index, image, className }: { index: number; image?: string; className?: string }) {
