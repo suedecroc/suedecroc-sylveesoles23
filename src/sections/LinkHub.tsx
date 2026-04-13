@@ -40,7 +40,7 @@ function LinkCard({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative block w-full overflow-hidden rounded-2xl shadow-lg"
+      className="group relative block w-full overflow-hidden rounded-2xl border border-[#F2A7B0] shadow-lg transition-colors duration-300 hover:border-[#D4707A]"
       style={{ aspectRatio: "16/7", x, y }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -58,9 +58,6 @@ function LinkCard({
         className="transition-transform duration-700 ease-out group-hover:scale-110"
         style={{ objectFit: "cover" }}
       />
-
-      {/* Blur overlay — clears on hover */}
-      <div className="absolute inset-0 backdrop-blur-md transition-all duration-500 group-hover:backdrop-blur-0" />
 
       {/* Dark gradient for text readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
