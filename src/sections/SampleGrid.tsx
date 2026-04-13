@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useCurtainReveal } from "@/hooks";
 
@@ -18,11 +19,13 @@ const samples: SampleItem[] = [
 
 function SampleCard({ index, image }: { index: number; image?: string }) {
   const { ref, isInView } = useCurtainReveal(0.2);
+  const [revealed, setRevealed] = useState(false);
 
   return (
     <motion.div
       ref={ref}
       className="group relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg"
+      onClick={() => image && setRevealed((r) => !r)}
       style={{
         background:
           index % 2 === 0
@@ -70,8 +73,8 @@ function SampleCard({ index, image }: { index: number; image?: string }) {
         </div>
       )}
 
-      {/* Blur overlay — blurred by default, clears on hover */}
-      {image && (
+      {/* Blur overlay — blurred by default, clears on hover or tap */}
+      {image && !revealed && (
         <div className="absolute inset-0 backdrop-blur-md transition-all duration-500 group-hover:backdrop-blur-0" />
       )}
     </motion.div>
