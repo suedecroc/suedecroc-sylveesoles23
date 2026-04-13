@@ -1,8 +1,22 @@
 "use client";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useCurtainReveal } from "@/hooks";
 
-function SampleCard({ index }: { index: number }) {
+interface SampleItem {
+  image?: string;
+}
+
+const samples: SampleItem[] = [
+  { image: "/samples/1.jpg" },
+  { image: "/samples/2.jpg" },
+  { image: "/samples/3.jpg" },
+  { image: "/samples/4.jpg" },
+  { image: "/samples/5.jpg" },
+  { image: "/samples/6.jpg" },
+];
+
+function SampleCard({ index, image }: { index: number; image?: string }) {
   const { ref, isInView } = useCurtainReveal(0.2);
 
   return (
@@ -35,16 +49,26 @@ function SampleCard({ index }: { index: number }) {
       </motion.div>
 
       {/* Card content */}
-      <div className="flex h-full flex-col items-center justify-center p-6">
-        <div className="mb-3 text-4xl opacity-40">🎀</div>
-        <p
-          className="text-lg font-medium"
-          style={{ color: index % 2 === 0 ? "#D4707A" : "#6BB5A0" }}
-        >
-          Coming Soon
-        </p>
-        <p className="mt-1 text-xs text-gray-400">Sample {index + 1}</p>
-      </div>
+      {image ? (
+        <Image
+          src={image}
+          alt=""
+          fill
+          sizes="(max-width: 768px) 50vw, 33vw"
+          style={{ objectFit: "cover" }}
+        />
+      ) : (
+        <div className="flex h-full flex-col items-center justify-center p-6">
+          <div className="mb-3 text-4xl opacity-40">🎀</div>
+          <p
+            className="text-lg font-medium"
+            style={{ color: index % 2 === 0 ? "#D4707A" : "#6BB5A0" }}
+          >
+            Coming Soon
+          </p>
+          <p className="mt-1 text-xs text-gray-400">Sample {index + 1}</p>
+        </div>
+      )}
 
       {/* Frosted hover overlay */}
       <div className="absolute inset-0 bg-white/0 backdrop-blur-0 transition-all duration-300 group-hover:bg-white/20 group-hover:backdrop-blur-sm" />
@@ -66,8 +90,8 @@ export default function SampleGrid() {
           Preview
         </motion.h2>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <SampleCard key={i} index={i} />
+          {samples.map((item, i) => (
+            <SampleCard key={i} index={i} image={item.image} />
           ))}
         </div>
       </div>

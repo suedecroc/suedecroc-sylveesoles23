@@ -6,6 +6,7 @@ import RibbonDecor from "@/components/RibbonDecor";
 import AgeGate from "@/sections/AgeGate";
 import Hero from "@/sections/Hero";
 import LinkHub from "@/sections/LinkHub";
+import VideoShowcase from "@/sections/VideoShowcase";
 import SampleGrid from "@/sections/SampleGrid";
 import Footer from "@/sections/Footer";
 
@@ -32,6 +33,7 @@ export default function Home() {
 
           <main className="relative">
             <Hero />
+            <VideoShowcase />
             <LinkHub />
             <SampleGrid />
           </main>

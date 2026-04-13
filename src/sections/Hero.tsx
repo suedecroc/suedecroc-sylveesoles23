@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useParallax, useTextScramble, useMagneticButton } from "@/hooks";
 
@@ -10,20 +11,20 @@ export default function Hero() {
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      {/* Animated gradient background */}
-      <motion.div
-        className="absolute inset-0"
-        style={{
-          y,
-          background:
-            "linear-gradient(135deg, #FFF5F5 0%, #FDDDE6 20%, #F2A7B0 40%, #A8D8C8 65%, #FFF5F5 100%)",
-          backgroundSize: "400% 400%",
-        }}
-        animate={{
-          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-      />
+      {/* Hero background image with parallax */}
+      <motion.div className="absolute -inset-y-16 inset-x-0" style={{ y }}>
+        <Image
+          src="/hero.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover" }}
+        />
+      </motion.div>
+
+      {/* Light pink tint overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FFF5F5]/70 via-[#F2A7B0]/40 to-[#A8D8C8]/50" />
 
       {/* Shimmer overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/10 to-white/30" />
@@ -31,8 +32,12 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 mx-4 text-center">
         <motion.h1
-          className="mb-4 text-6xl md:text-8xl"
-          style={{ fontFamily: "'Pinyon Script', cursive", color: "#D4707A" }}
+          className="mb-4 text-6xl md:text-8xl drop-shadow-lg"
+          style={{
+            fontFamily: "'Pinyon Script', cursive",
+            color: "#D4707A",
+            textShadow: "0 2px 12px rgba(255,255,255,0.6)",
+          }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
@@ -41,7 +46,11 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p
-          className="mb-10 font-mono text-sm tracking-widest text-gray-500 md:text-base"
+          className="mb-10 font-mono text-sm tracking-widest md:text-base"
+          style={{
+            color: "#4A4A4A",
+            textShadow: "0 1px 8px rgba(255,255,255,0.8)",
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
