@@ -11,8 +11,14 @@ export default function Hero() {
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      {/* Hero background image with parallax */}
-      <motion.div className="absolute -inset-y-16 inset-x-0" style={{ y }}>
+      {/* Hero background image with parallax + Ken Burns */}
+      <motion.div
+        className="absolute -inset-y-16 inset-x-0"
+        style={{ y }}
+        initial={{ opacity: 0, scale: 1.05 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+      >
         <Image
           src="/hero.jpg"
           alt=""
@@ -38,22 +44,24 @@ export default function Hero() {
             color: "#D4707A",
             textShadow: "0 2px 12px rgba(255,255,255,0.6)",
           }}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
+          transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
         >
           SylveonSoles23
         </motion.h1>
 
         <motion.p
-          className="mb-10 font-mono text-sm tracking-widest md:text-base"
+          className="mb-10 text-sm tracking-[0.25em] uppercase md:text-base"
           style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 300,
             color: "#4A4A4A",
             textShadow: "0 1px 8px rgba(255,255,255,0.8)",
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
+          transition={{ delay: 1.2, duration: 1 }}
         >
           {tagline}
         </motion.p>
@@ -62,7 +70,7 @@ export default function Hero() {
           className="flex flex-wrap justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2 }}
+          transition={{ delay: 1.8, duration: 0.8 }}
         >
           <motion.a
             ref={cta1Ref as React.Ref<HTMLAnchorElement>}

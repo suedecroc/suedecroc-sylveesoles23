@@ -6,8 +6,8 @@ export default function VideoShowcase() {
     <section className="relative py-24">
       <div className="mx-auto max-w-3xl px-4">
         <motion.h2
-          className="mb-12 text-center text-4xl"
-          style={{ fontFamily: "'Pinyon Script', cursive", color: "#D4707A" }}
+          className="mb-12 text-center text-3xl tracking-[0.15em] uppercase"
+          style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, color: "#D4707A" }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}

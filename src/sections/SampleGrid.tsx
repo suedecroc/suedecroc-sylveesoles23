@@ -6,25 +6,27 @@ import { useCurtainReveal } from "@/hooks";
 
 interface SampleItem {
   image?: string;
+  className?: string;
 }
 
 const samples: SampleItem[] = [
-  { image: "/samples/1.jpg" },
+  { image: "/samples/1.jpg", className: "md:row-span-2" },
   { image: "/samples/2.jpg" },
   { image: "/samples/3.jpg" },
-  { image: "/samples/4.jpg" },
+  { image: "/samples/4.jpg", className: "md:col-span-2 md:aspect-[3/2]" },
   { image: "/samples/5.jpg" },
   { image: "/samples/6.jpg" },
 ];
 
-function SampleCard({ index, image }: { index: number; image?: string }) {
+function SampleCard({ index, image, className }: { index: number; image?: string; className?: string }) {
   const { ref, isInView } = useCurtainReveal(0.2);
   const [revealed, setRevealed] = useState(false);
+  const isWide = className?.includes("col-span-2");
 
   return (
     <motion.div
       ref={ref}
-      className="group relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg"
+      className={`group relative overflow-hidden rounded-2xl shadow-lg ${className ?? ""} ${!isWide ? "aspect-[3/4]" : ""}`}
       onClick={() => image && setRevealed((r) => !r)}
       style={{
         background:
@@ -57,7 +59,8 @@ function SampleCard({ index, image }: { index: number; image?: string }) {
           src={image}
           alt=""
           fill
-          sizes="(max-width: 768px) 50vw, 33vw"
+          sizes={isWide ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 50vw, 33vw"}
+          className="transition-transform duration-700 ease-out group-hover:scale-105"
           style={{ objectFit: "cover" }}
         />
       ) : (
@@ -86,17 +89,17 @@ export default function SampleGrid() {
     <section id="gallery" className="relative py-24">
       <div className="mx-auto max-w-5xl px-4">
         <motion.h2
-          className="mb-12 text-center text-4xl"
-          style={{ fontFamily: "'Pinyon Script', cursive", color: "#D4707A" }}
+          className="mb-12 text-center text-3xl tracking-[0.15em] uppercase"
+          style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, color: "#D4707A" }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
           Preview
         </motion.h2>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
+        <div className="grid auto-rows-[200px] grid-cols-2 gap-4 md:auto-rows-[240px] md:grid-cols-3 md:gap-6">
           {samples.map((item, i) => (
-            <SampleCard key={i} index={i} image={item.image} />
+            <SampleCard key={i} index={i} image={item.image} className={item.className} />
           ))}
         </div>
       </div>
