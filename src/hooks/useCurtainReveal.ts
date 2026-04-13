@@ -1,0 +1,9 @@
+"use client";
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+
+export function useCurtainReveal(threshold = 0.3) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: threshold });
+  return { ref, isInView };
+}
