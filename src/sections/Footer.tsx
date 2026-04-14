@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="border-t border-pink-100 py-10 text-center">
       <p
         className="text-lg"
-        style={{ fontFamily: "'Pinyon Script', cursive", color: "#8C4A5A" }}
+        style={{ fontFamily: "'Pinyon Script', cursive", color: "#A83257" }}
       >
         SylveonSoles23
       </p>

@@ -81,7 +81,7 @@ export default function LinkHub() {
       <div className="mx-auto max-w-lg px-4">
         <motion.h2
           className="mb-12 text-center text-3xl tracking-[0.15em] uppercase"
-          style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, color: "#8C4A5A" }}
+          style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, color: "#A83257" }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
