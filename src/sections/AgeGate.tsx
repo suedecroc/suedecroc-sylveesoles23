@@ -51,7 +51,7 @@ export default function AgeGate({ onVerified }: { onVerified: () => void }) {
             <div className="mb-4 text-5xl">🎀</div>
             <h1
               className="mb-2 text-3xl"
-              style={{ fontFamily: "'Pinyon Script', cursive", color: "#D4707A" }}
+              style={{ fontFamily: "'Pinyon Script', cursive", color: "#A83257" }}
             >
               SylveonSoles23
             </h1>

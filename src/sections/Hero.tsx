@@ -41,7 +41,7 @@ export default function Hero() {
           className="mb-4 text-6xl md:text-8xl drop-shadow-lg"
           style={{
             fontFamily: "'Pinyon Script', cursive",
-            color: "#D4707A",
+            color: "#A83257",
             textShadow: "0 2px 12px rgba(255,255,255,0.6)",
           }}
           initial={{ opacity: 0, y: 50 }}
